@@ -1,0 +1,39 @@
+{
+  "name": "save-jurimetry-data-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hacketeiros-da-noite/BaseNodeApi_RabbitMq",
+  "author": "Renan Winter Spatin <rwspatin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run build & npm run start:pm2",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start:pm2": "pm2-runtime start src/config/ecosystem.config.js --env production",
+    "start:api": "nodemon src/server.js",
+    "start:debug": "nodemon --inspect src/server.js",
+    "start:rabbitmq": "node src/worker.js",
+    "delete:pm2:all": "pm2 delete all",
+    "correct:all": "yarn eslint --fix src --ext .js",
+    "install:sucrase": "npm install --save-dev sucrase"
+  },
+  "dependencies": {
+    "sucrase": "^3.16.0",
+    "amqp": "^0.2.7",
+    "amqplib": "^0.6.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "pm2": "^4.5.1",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "sequelize-cli": "^6.2.0"
+  }
+}
