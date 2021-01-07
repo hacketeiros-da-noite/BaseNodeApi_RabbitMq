@@ -29,8 +29,9 @@ class RabbitmqConsumer {
                                 msg.content.toString()
                             );
                             setTimeout(() => {
-                                console.log(' [x] Done');
                                 ch.ack(msg);
+                                queue.func(JSON.parse(msg.content.toString()));
+                                console.log(' [x] Done');
                             }, queue.timeout);
                         },
                         {
